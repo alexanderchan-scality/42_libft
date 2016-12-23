@@ -6,7 +6,7 @@
 /*   By: achan <achan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 05:44:20 by achan             #+#    #+#             */
-/*   Updated: 2016/12/22 07:26:18 by achan            ###   ########.fr       */
+/*   Updated: 2016/12/23 15:41:23 by achan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void				ft_putchar_fd(char const c, int fd);
 void				ft_putchar_w_fd(int const c, int fd);
 
 void				ft_putstr(char const *s);
-void				ft_putstr_w(char  const *s);
+void				ft_putstr_w(char const *s);
 void				ft_putstr_fd(char const *s, int fd);
 void				ft_putstr_w_fd(char const *s, int fd);
 
