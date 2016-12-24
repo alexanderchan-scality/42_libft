@@ -6,14 +6,14 @@
 /*   By: achan <achan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 12:33:09 by achan             #+#    #+#             */
-/*   Updated: 2016/12/22 06:27:42 by achan            ###   ########.fr       */
+/*   Updated: 2016/12/23 16:19:27 by achan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_LIST_H
 # define FT_LIST_H
 
-# include "ft_general.h"
+# include <stdlib.h>
 
 typedef struct		s_list
 {

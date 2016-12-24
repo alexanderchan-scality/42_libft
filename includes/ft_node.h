@@ -6,14 +6,14 @@
 /*   By: achan <achan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 20:21:48 by achan             #+#    #+#             */
-/*   Updated: 2016/12/22 06:12:58 by achan            ###   ########.fr       */
+/*   Updated: 2016/12/23 16:17:56 by achan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_NODE_H
 # define FT_NODE_H
 
-# include "ft_general.h"
+# include <stdlib.h>
 
 typedef struct		s_node
 {

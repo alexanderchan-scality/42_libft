@@ -6,14 +6,13 @@
 /*   By: achan <achan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 19:41:11 by achan             #+#    #+#             */
-/*   Updated: 2016/12/22 06:28:34 by achan            ###   ########.fr       */
+/*   Updated: 2016/12/23 16:18:52 by achan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_LINKEDLIST_H
 # define FT_LINKEDLIST_H
 
-# include "ft_general.h"
 # include "ft_node.h"
 
 typedef struct	s_llist

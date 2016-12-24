@@ -6,16 +6,14 @@
 /*   By: achan <achan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 06:12:01 by achan             #+#    #+#             */
-/*   Updated: 2016/12/22 06:12:03 by achan            ###   ########.fr       */
+/*   Updated: 2016/12/23 16:25:49 by achan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_GENERAL_H
 # define FT_GENERAL_H
 
-# include <unistd.h>
 # include <stdlib.h>
-# include <string.h>
 
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_bzero(void *b, size_t n);
