@@ -6,7 +6,7 @@
 /*   By: achan <achan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 14:37:59 by achan             #+#    #+#             */
-/*   Updated: 2016/12/16 10:37:09 by achan            ###   ########.fr       */
+/*   Updated: 2016/12/24 16:29:25 by achan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_remalloc(void *ptr, size_t s1, size_t s2)
 	unsigned char	*tmp;
 
 	if (!ptr)
-		return (NULL);
+		s1 = 0;
 	tmp = (unsigned char *)ptr;
 	if (s1 == s2)
 		return (ptr);
@@ -34,6 +34,7 @@ void	*ft_remalloc(void *ptr, size_t s1, size_t s2)
 			new_ptr[i] = 0;
 		++i;
 	}
-	free(ptr);
+	if (ptr)
+		free(ptr);
 	return ((void *)new_ptr);
 }
