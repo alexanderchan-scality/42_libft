@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_vct_at.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achan <achan@student.42.fr>                +#+  +:+       +#+        */
+/*   By: achan <achan@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/22 06:10:56 by achan             #+#    #+#             */
-/*   Updated: 2016/12/27 01:38:39 by achan            ###   ########.fr       */
+/*   Created: 2016/12/27 00:12:10 by achan             #+#    #+#             */
+/*   Updated: 2016/12/27 02:19:11 by achan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "ft_vector.h"
 
-# include "ft_general.h"
-# include "ft_io.h"
-# include "ft_list.h"
-# include "ft_io.h"
-# include "ft_linkedlist.h"
-# include "ft_vector.h"
+void	*ft_vct_at(t_vector *vct, size_t ind)
+{
+	void	*data_pos;
 
-#endif
+	if (!vct)
+		return (NULL);
+	if (ind >= vct->size || !vct->data)
+		return (NULL);
+	data_pos = vct->data + (vct->type_size * ind);
+	return (data_pos);
+}

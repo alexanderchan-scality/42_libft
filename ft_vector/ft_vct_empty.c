@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_vct_empty.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achan <achan@student.42.fr>                +#+  +:+       +#+        */
+/*   By: achan <achan@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/22 06:10:56 by achan             #+#    #+#             */
-/*   Updated: 2016/12/27 01:38:39 by achan            ###   ########.fr       */
+/*   Created: 2016/12/27 00:21:45 by achan             #+#    #+#             */
+/*   Updated: 2016/12/27 00:22:41 by achan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "ft_vector.h"
 
-# include "ft_general.h"
-# include "ft_io.h"
-# include "ft_list.h"
-# include "ft_io.h"
-# include "ft_linkedlist.h"
-# include "ft_vector.h"
-
-#endif
+int	ft_vct_empty(t_vector *vct)
+{
+	if (!vct)
+		return (-1);
+	if (vct->size)
+		return (0);
+	return (1);
+}

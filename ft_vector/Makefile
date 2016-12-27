@@ -6,48 +6,27 @@
 #    By: achan <achan@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/30 13:03:37 by achan             #+#    #+#              #
-#    Updated: 2016/12/27 01:30:24 by achan            ###   ########.fr        #
+#    Updated: 2016/12/16 19:29:51 by achan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-OBJS	=	objs
+OBJS	=	../objs
 CC		=	gcc
 WFLAGS	=	-Wall -Wextra -Werror
 CFLAGS	=	-c
 GFLAGS	=	-g
-IFLAGS	=	-I ./includes
-C_SRCS	=	$(wildcard ./ft_general/ft*.c)\
-			$(wildcard ./ft_io/ft*.c)\
-			$(wildcard ./ft_list/ft*.c)\
-			$(wildcard ./ft_node/ft*.c)\
-			$(wildcard ./ft_linkedlist/ft*.c)\
-			$(wildcard ./ft_vector/ft*.c)
-C_OBJS	=	$(addprefix $(OBJS)/,$(notdir ${C_SRCS:.c=.o}))
-NAME	=	libft.a
+IFLAGS	=	-I ../includes
+C_SRCS	=	$(wildcard ft*.c)
+C_OBJS	=	$(addprefix $(OBJS)/, ${C_SRCS:.c=.o})
 
 .PHONY:		all clean fclean test re
 
-all: $(NAME)
+all: $(C_OBJS)
 
-$(NAME): $(C_SRCS)
-	@mkdir -p $(OBJS) ||:
-	@echo "Compiling ft_general files:"
-	@$(MAKE) -C ./ft_general
-	@echo "Compiling ft_io files:"
-	@$(MAKE) -C ./ft_io
-	@echo "Compiling ft_list files:"
-	@$(MAKE) -C ./ft_list
-	@echo "Compiling ft_node files:"
-	@$(MAKE) -C ./ft_node
-	@echo "Compiling ft_linkedlist files:"
-	@$(MAKE) -C ./ft_linkedlist
-	@echo "Compiling ft_vector files:"
-	@$(MAKE) -C ./ft_vector
-	@echo "libft.a created" ||:
-	@ar rcs $@ $(C_OBJS)||:
-	@ranlib $@ ||:
+$(C_OBJS): $(C_SRCS)
+	@$(CC) $(WFLAGS) $(GFLAGS) $(IFLAGS) $(CFLAGS) $(subst $(OBJS),.,$*.c) -o $@
 
-clean:
+clean:		
 	@rm -rf $(OBJS) ||:
 
 fclean: clean
