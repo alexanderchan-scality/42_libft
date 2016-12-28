@@ -6,7 +6,7 @@
 /*   By: achan <achan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 21:31:27 by achan             #+#    #+#             */
-/*   Updated: 2016/12/27 19:06:00 by achan            ###   ########.fr       */
+/*   Updated: 2016/12/28 12:50:07 by achan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_llst_del(t_llist **llst, void (*del)())
 	t_node	*node;
 	t_node	*tmp;
 
-	if (!llst || !(*del))
+	if (!llst)
 		return ;
 	if (!*llst)
 		return ;
@@ -26,7 +26,10 @@ void	ft_llst_del(t_llist **llst, void (*del)())
 	{
 		tmp = node;
 		node = node->next;
-		(*del)(tmp->data, tmp->data_size);
+		if ((*del))
+			(*del)(tmp->data, tmp->data_size);
+		else
+			free(tmp->data);
 		tmp->data = NULL;
 		free(tmp);
 	}
