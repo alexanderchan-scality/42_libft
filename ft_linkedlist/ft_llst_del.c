@@ -6,7 +6,7 @@
 /*   By: achan <achan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 21:31:27 by achan             #+#    #+#             */
-/*   Updated: 2016/12/16 09:22:56 by achan            ###   ########.fr       */
+/*   Updated: 2016/12/27 19:06:00 by achan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	ft_llst_del(t_llist **llst, void (*del)())
 		tmp = node;
 		node = node->next;
 		(*del)(tmp->data, tmp->data_size);
+		tmp->data = NULL;
 		free(tmp);
 	}
 	(*llst)->head = NULL;
