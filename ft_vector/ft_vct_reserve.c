@@ -6,7 +6,7 @@
 /*   By: achan <achan@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/27 00:23:35 by achan             #+#    #+#             */
-/*   Updated: 2016/12/27 01:20:33 by achan            ###   ########.fr       */
+/*   Updated: 2016/12/29 13:55:09 by achan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@ void	ft_vct_reserve(t_vector *vct, size_t new_cap)
 	if (vct->data)
 		free(vct->data);
 	vct->data = new_data;
-	vct->total_bytes = vct->capacity* vct->type_size;
+	vct->total_bytes = vct->capacity * vct->type_size;
 }

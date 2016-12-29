@@ -6,13 +6,13 @@
 /*   By: achan <achan@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/26 23:41:17 by achan             #+#    #+#             */
-/*   Updated: 2016/12/27 01:55:45 by achan            ###   ########.fr       */
+/*   Updated: 2016/12/29 13:55:38 by achan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vector.h"
 
-void	ft_vct_deli(t_vector *vct, size_t ind, void(*del)())
+void	ft_vct_deli(t_vector *vct, size_t ind, void (*del)())
 {
 	void	*data_pos;
 	size_t	d_size;

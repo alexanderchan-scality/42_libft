@@ -6,7 +6,7 @@
 /*   By: achan <achan@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/26 23:01:15 by achan             #+#    #+#             */
-/*   Updated: 2016/12/26 23:01:49 by achan            ###   ########.fr       */
+/*   Updated: 2016/12/29 13:57:36 by achan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ static int	get_rem_line(char **line, t_fd_state *state, size_t *cur_size)
 	char	*nl_pos;
 	size_t	d_size;
 
-	*cur_size = 0;
 	if (state->rem_size > 0)
 	{
 		free(*line);
@@ -111,6 +110,7 @@ int			ft_gnl(const int fd, char **line)
 	if (!(*line = (char *)malloc(sizeof(char))))
 		return (-1);
 	line[0][0] = 0;
+	cur_size = 0;
 	if (ft_llst_empty(&fd_states) ||
 		!(state = (ft_llst_find(&fd_states, (int *)&fd, &fd_cmp))))
 		ft_llst_pushbck(&fd_states, (state = fd_new(fd)), sizeof(t_fd_state));

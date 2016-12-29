@@ -6,7 +6,7 @@
 /*   By: achan <achan@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/26 23:31:02 by achan             #+#    #+#             */
-/*   Updated: 2016/12/28 16:22:38 by achan            ###   ########.fr       */
+/*   Updated: 2016/12/29 13:53:40 by achan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_vct_del(t_vector **vct, void (*del)())
 			while (ind < (*vct)->size)
 			{
 				data_pos = (*vct)->data + ((*vct)->type_size * ind);
-					(*del)(data_pos);
+				(*del)(data_pos);
 				++ind;
 			}
 		}
