@@ -6,13 +6,13 @@
 /*   By: achan <achan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 09:10:12 by achan             #+#    #+#             */
-/*   Updated: 2016/12/18 00:34:18 by achan            ###   ########.fr       */
+/*   Updated: 2016/12/29 21:10:17 by achan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_general.h"
 
-static unsigned int	str_size(int n)
+static size_t	str_size(int n)
 {
 	unsigned int	i;
 
@@ -29,31 +29,28 @@ static unsigned int	str_size(int n)
 	return (i);
 }
 
-char				*ft_itoa(int n)
+char			*ft_itoa(int n)
 {
-	char			*ret;
-	unsigned int	i;
-	unsigned int	neg;
+	char	*ret;
+	size_t	i;
+	int		rem;
 
-	neg = 0;
 	i = str_size(n);
 	if (!(ret = (char *)malloc(sizeof(char) * (i + 1))))
 		return (NULL);
 	ret[i] = 0;
-	if (n == -2147483648)
+	if (n == 0)
 	{
-		n = -214748364;
-		ret[--i] = '8';
+		ret[0] = '0';
+		return (ret);
 	}
-	neg = (n < 0) ? 1 : 0;
-	n = (n < 0) ? -n : n;
-	while (i)
+	if (n < 0)
+		ret[0] = '-';
+	while (n)
 	{
-		--i;
-		ret[i] = n % 10 + '0';
-		n = n / 10;
+		rem = (n < 0) ? (n % 10) * -1 : (n % 10);
+		ret[--i] = rem + '0';
+		n = (n < 0) ? (n / 10) * -1 : (n / 10);
 	}
-	if (neg)
-		ret[i] = '-';
 	return (ret);
 }

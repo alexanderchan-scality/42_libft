@@ -6,7 +6,7 @@
 /*   By: achan <achan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 05:44:20 by achan             #+#    #+#             */
-/*   Updated: 2016/12/26 23:03:49 by achan            ###   ########.fr       */
+/*   Updated: 2016/12/29 21:03:18 by achan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,4 @@ typedef struct		s_fd_state
 }					t_fd_state;
 
 int					ft_gnl(const int fd, char **line);
-int					fd_cmp(void *fd_state, void *fd);
-t_fd_state			*fd_new(int fd);
 #endif
