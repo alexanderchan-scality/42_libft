@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_ltoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achan <achan@student.42.fr>                +#+  +:+       +#+        */
+/*   By: achan <achan@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/01 09:10:12 by achan             #+#    #+#             */
-/*   Updated: 2016/12/29 22:48:56 by achan            ###   ########.fr       */
+/*   Created: 2016/12/29 20:47:14 by achan             #+#    #+#             */
+/*   Updated: 2016/12/29 22:50:55 by achan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_general.h"
 
-static size_t	str_size(int n)
+static size_t	str_size(long long n)
 {
 	size_t	i;
 
@@ -30,7 +30,7 @@ static size_t	str_size(int n)
 	return (i);
 }
 
-char			*ft_itoa(int n)
+char			*ft_ltoa(long long n)
 {
 	char	*ret;
 	size_t	i;

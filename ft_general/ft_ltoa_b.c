@@ -1,42 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_ltoa_b.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achan <achan@student.42.fr>                +#+  +:+       +#+        */
+/*   By: achan <achan@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/01 09:10:12 by achan             #+#    #+#             */
-/*   Updated: 2016/12/29 22:48:56 by achan            ###   ########.fr       */
+/*   Created: 2016/12/29 21:50:33 by achan             #+#    #+#             */
+/*   Updated: 2016/12/29 22:55:31 by achan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_general.h"
 
-static size_t	str_size(int n)
+static size_t	str_size(long long n, size_t b)
 {
 	size_t	i;
 
 	i = 0;
 	if (n == 0)
 		return (1);
-	if (n < 0)
-		++i;
 	while (n)
 	{
 		++i;
-		n /= 10;
+		n /= b;
 		n = (n < 0) ? -n : n;
 	}
 	return (i);
 }
 
-char			*ft_itoa(int n)
+char			*ft_ltoa_b(long long n, size_t b)
 {
-	char	*ret;
-	size_t	i;
-	int		rem;
+	static char	val[16] = { '0', '1', '2', '3', '4', '5', '6', '7',
+							'8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
+	char		*ret;
+	size_t		i;
+	int			rem;
 
-	i = str_size(n);
+	if (b == 10 || b < 2)
+		return (ft_ltoa(n));
+	i = str_size(n, b);
 	if (!(ret = (char *)malloc(sizeof(char) * (i + 1))))
 		return (NULL);
 	ret[i] = 0;
@@ -45,13 +47,11 @@ char			*ft_itoa(int n)
 		ret[0] = '0';
 		return (ret);
 	}
-	if (n < 0)
-		ret[0] = '-';
 	while (n)
 	{
-		rem = (n < 0) ? (n % 10) * -1 : (n % 10);
-		ret[--i] = rem + '0';
-		n /= 10;
+		rem = (n < 0) ? (n % b) * -1 : (n % b);
+		ret[--i] = val[rem];
+		n /= b;
 		n = (n < 0) ? -n : n;
 	}
 	return (ret);

@@ -6,7 +6,7 @@
 /*   By: achan <achan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 06:12:01 by achan             #+#    #+#             */
-/*   Updated: 2016/12/23 16:25:49 by achan            ###   ########.fr       */
+/*   Updated: 2016/12/29 22:50:07 by achan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,10 @@ char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
+
 char				*ft_itoa(int n);
+char				*ft_ltoa(long long n);
+char				*ft_itoa_b(int n, size_t b);
+char				*ft_ltoa_b(long long n, size_t b);
 
 #endif
