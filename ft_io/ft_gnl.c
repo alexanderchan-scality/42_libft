@@ -6,13 +6,13 @@
 /*   By: achan <achan@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/26 23:01:15 by achan             #+#    #+#             */
-/*   Updated: 2016/12/29 13:57:36 by achan            ###   ########.fr       */
+/*   Updated: 2016/12/29 21:11:47 by achan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_io.h"
 
-t_fd_state	*fd_new(int fd)
+static t_fd_state	*fd_new(int fd)
 {
 	t_fd_state	*ret;
 
@@ -26,7 +26,7 @@ t_fd_state	*fd_new(int fd)
 	return (ret);
 }
 
-int			fd_cmp(void *fd_state, void *fd)
+static int			fd_cmp(void *fd_state, void *fd)
 {
 	t_fd_state	*tmp_state;
 	int			*tmp_fd;
@@ -40,7 +40,8 @@ int			fd_cmp(void *fd_state, void *fd)
 	return (0);
 }
 
-static int	get_rem_line(char **line, t_fd_state *state, size_t *cur_size)
+static int			get_rem_line(char **line, t_fd_state *state,
+									size_t *cur_size)
 {
 	char	*nl_pos;
 	size_t	d_size;
@@ -69,7 +70,7 @@ static int	get_rem_line(char **line, t_fd_state *state, size_t *cur_size)
 	return (0);
 }
 
-static int	get_read_line(char **line,
+static int			get_read_line(char **line,
 							t_fd_state *state, size_t *cur_size)
 {
 	int		ret;
@@ -98,7 +99,7 @@ static int	get_read_line(char **line,
 	return (ret);
 }
 
-int			ft_gnl(const int fd, char **line)
+int					ft_gnl(const int fd, char **line)
 {
 	static t_llist	fd_states = {NULL, NULL};
 	t_fd_state		*state;
