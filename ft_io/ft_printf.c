@@ -6,18 +6,12 @@
 /*   By: achan <achan@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/30 03:09:29 by achan             #+#    #+#             */
-/*   Updated: 2016/12/30 11:31:48 by achan            ###   ########.fr       */
+/*   Updated: 2016/12/31 17:38:39 by achan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_io.h"
-
-static int	is_specifier(char c)
-{
-	return (c == 'd' || c == 'D' || c == 'i' || c == 'o' || c == 'O' ||
-			c == 'u' || c == 'U' || c == 'x' || c == 'X' || c == 'b' ||
-			c == 's' || c == 'S' || c == 'c' || c == 'C' || c == 'p');
-}
+#include "ft_printf_helper.h"
 
 static int	ft_printf_parse(char **str, int	*spec_pos, int *cnt)
 {
@@ -46,18 +40,17 @@ static int	ft_printf_parse(char **str, int	*spec_pos, int *cnt)
 	return (1);
 }
 
-static int	ft_printf_format(char **format, int pos, va_list args)
+static int	ft_printf_format(char **s, int pos, va_list args)
 {
 	int		ret;
 
-	if (s[p] == 'c' || s[p] == 'C' || s[p] == 's' || s[p] == 'S')
-		ret = ft_print_str(format, pos, args);
-	else if (s[p] == 'd' || s[p] == 'D' || s[p] == 'i' ||
-				s[p] == 'u' || s[p] == 'U')
-		ret = ft_print_num(format, pos, args);
-	else if (s[p] == 'b' || s[p] == 'o' || s[p] == 'O' ||
-				s[p] == 'x' || s[p] == 'X')
-		ret = ft_print_num_b(format, pos, args);
+	if ((*s)[p] == 'c' || (*s)[p] == 'C' || (*s)[p] == 's' || (*s)[p] == 'S')
+		ret = ft_print_str((*s)[p], str, pos, args);
+	else if ((*s)[p] == 'd' || (*s)[p] == 'D' || (*s)[p] == 'i')
+		ret = ft_print_num((*s)[p], str, pos, args);
+	else if ((*s)[p] == 'b' || (*s)[p] == 'o' || (*s)[p] == 'O' ||
+		(*s)[p] == 'x' || (*s)[p] == 'X' || (*s)[p] == 'u' || (*s)[p] == 'U')
+		ret = ft_print_num_b((*s)[p], str, pos, args);
 	if (ret < 0)
 		return (-1);
 	return (ret);
