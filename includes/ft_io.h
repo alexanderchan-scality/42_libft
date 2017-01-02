@@ -6,7 +6,7 @@
 /*   By: achan <achan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 05:44:20 by achan             #+#    #+#             */
-/*   Updated: 2016/12/30 12:04:09 by achan            ###   ########.fr       */
+/*   Updated: 2017/01/01 22:57:30 by achan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,4 @@ typedef struct		s_fd_state
 int					ft_gnl(const int fd, char **line);
 
 int					ft_printf(const char *format, ...);
-int					ft_print_str(char **format, int pos, va_list args);
-int					ft_print_num(char **format, int pos, va_list args);
-int					ft_print_num_b(char **format, int pos, va_list args);
 #endif
