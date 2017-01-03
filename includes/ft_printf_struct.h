@@ -6,17 +6,18 @@
 /*   By: achan <achan@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/01 23:22:13 by achan             #+#    #+#             */
-/*   Updated: 2017/01/01 23:34:33 by achan            ###   ########.fr       */
+/*   Updated: 2017/01/02 16:52:29 by achan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_STRUCT_H
-#define FT_PRINTF_STRUCT_H
+# define FT_PRINTF_STRUCT_H
 
-#include "ft_general.h"
+# include "ft_general.h"
 
 typedef struct		s_fmt
 {
+	char			f_spec;
 	int				f_spec_type;
 	int				f_justify;
 	int				f_sign;
@@ -30,9 +31,6 @@ typedef struct		s_fmt
 	int				f_length;
 }					t_fmt;
 
-# define NORMAL		0
-# define FORMATTED	1
-
 typedef struct		s_seg
 {
 	char			*str;
@@ -41,5 +39,5 @@ typedef struct		s_seg
 
 t_fmt	*new_fmt(void);
 t_seg	*new_seg(void);
-
+void	seg_del(t_seg *seg);
 #endif

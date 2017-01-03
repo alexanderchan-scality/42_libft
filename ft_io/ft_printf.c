@@ -6,12 +6,13 @@
 /*   By: achan <achan@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/01 12:26:49 by achan             #+#    #+#             */
-/*   Updated: 2017/01/02 13:37:26 by achan            ###   ########.fr       */
+/*   Updated: 2017/01/02 16:53:23 by achan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_io.h"
 #include "ft_printf_helper.h"
+#include "ft_printf_struct.h"
 
 static int	ft_printf_parse(char **s, t_vector *segs)
 {
@@ -27,12 +28,15 @@ static int	ft_printf_parse(char **s, t_vector *segs)
 				break;
 		ft_vct_add(str_seg, (*s)++, sizeof(char));
 	}
-	ft_vct_add(str_seg, "", sizeof(char));
-	seg->str = ft_strdup(str_seg->data);
-	ft_vct_add(segs, seg, sizeof(t_seg));
-	ft_vct_del(str_seg, NULL);
+	if (!ft_vct_empty(str_seg))
+	{
+		ft_vct_add(str_seg, "", sizeof(char));
+		seg->str = ft_strdup(str_seg->data);
+		ft_vct_add(segs, seg, sizeof(t_seg));
+	}
+	ft_vct_del(&str_seg, NULL);
 	free(seg);
-	return ((**str) ? 1 : 0);
+	return ((**s) ? 1 : 0);
 }
 
 static int	ft_printf_fmt_err_chk(char *s)
@@ -41,7 +45,7 @@ static int	ft_printf_fmt_err_chk(char *s)
 	int		pos;
 
 	pos = 0;
-	tmp	= *s + 1;
+	tmp	= (*s) ? s + 1 : s;
 	while (*tmp && *tmp != '%' && !is_specifier(*tmp))
 	{
 		++tmp;
@@ -51,33 +55,30 @@ static int	ft_printf_fmt_err_chk(char *s)
 		return (-1);
 	return (pos);
 }
+
 static int	ft_printf_format(char **s, va_list arg_list,
 								t_vector *segs, t_vector *args)
 {
 	int		p;
 	char	spec;
 
+	ft_vct_empty(args);
 	if ((p = ft_printf_fmt_err_chk(*s)) < 0)
 		return (-1);
-	t_vector	*str_seg;
-	t_seg		*seg;
-
-	if (!(str_seg = ft_vct_blank(sizeof(char))) || !(seg = new_seg()))
-		return (-1);
-	while (**s && !is_specifier(**s))
-		ft_vct_add(str_seg, (*s)++, sizeof(char));
-	
-	t_vct_add(str_seg, "", sizeof(char));
-	seg->str = ft_strdup(str_seg->data);
-	ft_vct_add(segs, seg, sizeof(t_seg));
-	ft_vct_del(str_seg, NULL);
-	free(seg);
-	/*spec = (*s)[p];*/
-	/*if (C(spec) || S(spec))*/
+	*s = (**s == '%') ? ++(*s) : *s;
+	spec = (*s)[p];
+	if (C(spec) || S(spec))
+		ft_printf_s_str(s, arg_list, segs, args);
 	/*else if (D(spec) || I(spec))*/
+		/*[>ft_printf_str(s, arg_list, segs, args);<]*/
 	/*else if (B(spec) || U(spec) || X(spec) || P(spec))*/
-	/*if (ret < 0)*/
-		/*return (-1);*/
+		/*[>ft_printf_str(s, arg_list, segs, args);<]*/
+	/*else if (E(spec) || F(spec) || G(spec) || A(spec))*/
+		/*[>ft_printf_str(s, arg_list, segs, args);<]*/
+	/*else if (N(spec))*/
+		/*[>ft_printf_str(s, arg_list, segs, args);<]*/
+	if (ret < 0)
+		return (-1);
 	return (0);
 }
 
@@ -88,7 +89,7 @@ static int	ft_printf_err_chk(char *s, va_list arg_list,
 
 	while ((i = ft_printf_parse(&s, segs)))
 	{
-		if ((i == ft_printf_format(&s, arg_list, segs, args)) < 0)
+		if ((i = ft_printf_format(&s, arg_list, segs, args)) < 0)
 			return (-1);
 	}
 	if (*s && !i)
@@ -99,7 +100,7 @@ static int	ft_printf_err_chk(char *s, va_list arg_list,
 int			ft_printf(const char *format, ...)
 {
 	va_list		arg_list;
-	int			ret;
+	/*int			ret;*/
 	t_vector	*segs;
 	t_vector	*args;
 
@@ -107,11 +108,14 @@ int			ft_printf(const char *format, ...)
 		!(args = ft_vct_blank(sizeof(void *))))
 		return (-1);
 	va_start(arg_list, format);
-	if (ft_printf_err_chk(format, arg_list, segs, args))
+	if (ft_printf_err_chk((char *)format, arg_list, segs, args))
 	{
-		ft_vct_del(segs, &seg_del);
-		ft_vct_del(args, NULL);
+		ft_vct_del(&segs, &seg_del);
+		ft_vct_del(&args, NULL);
 		return (-1);
 	}
-	va_end(args);
+	va_end(arg_list);
+	ft_vct_del(&segs, &seg_del);
+	ft_vct_del(&args, NULL);
+	return (0);
 }

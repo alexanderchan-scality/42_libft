@@ -6,7 +6,7 @@
 /*   By: achan <achan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 05:44:20 by achan             #+#    #+#             */
-/*   Updated: 2017/01/01 22:57:30 by achan            ###   ########.fr       */
+/*   Updated: 2017/01/02 14:23:11 by achan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdarg.h>
 # include "ft_general.h"
+# include "ft_linkedlist.h"
 
 int					ft_utf_encode(int c, int *output);
 

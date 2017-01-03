@@ -6,35 +6,23 @@
 /*   By: achan <achan@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/01 12:58:44 by achan             #+#    #+#             */
-/*   Updated: 2017/01/02 13:37:23 by achan            ###   ########.fr       */
+/*   Updated: 2017/01/02 17:30:50 by achan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_helper.h"
 
-#define FLAG(c) ((c) == '-' || (c) == '+' || (c) == ' ' || (c) == '#')
-#define NUM(c)	((c) >= '0' && (c) <= '9')
-#define I(c)	((c) == 'i')
-#define D(c)	((c) == 'd' || (c) == 'D')
-#define O(c)	((c) == 'o' || (c) == 'O')
-#define U(c)	((c) == 'u' || (c) == 'U')
-#define X(c)	((c) == 'x' || (c) == 'X')
-#define B(c)	((c) == 'b')
-#define S(c)	((c) == 's' || (c) == 'S')
-#define C(c)	((c) == 'c' || (c) == 'C')
-#define P(c)	((c) == 'p')
-
-#define N(c)	((c) == 'n')
-#define E(c)	((c) == 'e' || (c) == 'E')
-#define F(c)	((c) == 'f' || (c) == 'F')
-#define G(c)	((c) == 'g' || (c) == 'G')
-#define A(c)	((c) == 'a' || (c) == 'A')
-
 int		is_specifier(char c)
 {
-	return (c == 'd' || c == 'D' || c == 'i' || c == 'o' || c == 'O' ||
-			c == 'u' || c == 'U' || c == 'x' || c == 'X' || c == 'b' ||
-			c == 's' || c == 'S' || c == 'c' || c == 'C' || c == 'p');
+	return (I(c) || D(c) || O(c) || U(c) || X(c) ||
+			B(c) || S(c) || C(c) || P(c) || N(c))
+}
+
+void	spec_type_check(char **s, t_fmt *format, t_seg *seg)
+{
+	int		val;
+	
+	val = ft_atoi(*s);
 }
 
 void	flag_check(char **str, t_fmt *fmt)
