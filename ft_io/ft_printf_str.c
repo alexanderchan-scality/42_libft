@@ -6,7 +6,7 @@
 /*   By: achan <achan@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/02 16:13:08 by achan             #+#    #+#             */
-/*   Updated: 2017/01/02 16:53:31 by achan            ###   ########.fr       */
+/*   Updated: 2017/01/02 22:03:28 by achan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,8 @@ int			ft_printf_s_str(char **s, va_list arg_list,
 	if (!(format = new_fmt()) || !(seg = new_seg()))
 		return (-1);
 	if (spec_type_check(s, format, seg))
-		return (-1);
 	flag_check(s, format);
 	if (width_check(s, format, seg))
-		return (-1);
 	if (precision_check(s, format, seg))
-		return (-1);
 	if (length_check(s, format, seg))
-		return (-1);
 }

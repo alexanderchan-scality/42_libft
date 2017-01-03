@@ -6,7 +6,7 @@
 /*   By: achan <achan@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/01 12:58:44 by achan             #+#    #+#             */
-/*   Updated: 2017/01/02 17:30:50 by achan            ###   ########.fr       */
+/*   Updated: 2017/01/02 22:03:35 by achan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,17 @@ int		is_specifier(char c)
 			B(c) || S(c) || C(c) || P(c) || N(c))
 }
 
-void	spec_type_check(char **s, t_fmt *format, t_seg *seg)
+int		spec_type_check(char **s, t_fmt *format, t_seg *seg)
 {
 	int		val;
-	
-	val = ft_atoi(*s);
-}
 
+	val = 0;
+	while (NUM(**s))
+		val = (val * 10) + (*(*s)++ - '0');
+	if (val < 0)
+		return (0);
+
+}
 void	flag_check(char **str, t_fmt *fmt)
 {
 	while (**str && (FLAG(**str) || **str == '0'))
@@ -47,9 +51,9 @@ int		width_check(char **str, t_fmt *fmt)
 {
 	int	width;
 
-	width = ft_atoi(*str);
-	while (**str >= '0' && **str <= '9')
-		++(*str);
+	width = 0;
+	while (NUM(**s))
+		width = (width * 10) + (*(*s)++ - '0');
 	if (**str == '*')
 	{
 		if (width > 0)
