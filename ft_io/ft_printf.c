@@ -6,7 +6,7 @@
 /*   By: achan <achan@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/01 12:26:49 by achan             #+#    #+#             */
-/*   Updated: 2017/01/02 16:53:23 by achan            ###   ########.fr       */
+/*   Updated: 2017/01/03 20:07:11 by achan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ static int	ft_printf_format(char **s, va_list arg_list,
 								t_vector *segs, t_vector *args)
 {
 	int		p;
+	int		ret;
 	char	spec;
 
 	ft_vct_empty(args);
@@ -68,15 +69,15 @@ static int	ft_printf_format(char **s, va_list arg_list,
 	*s = (**s == '%') ? ++(*s) : *s;
 	spec = (*s)[p];
 	if (C(spec) || S(spec))
-		ft_printf_s_str(s, arg_list, segs, args);
+		ret = ft_printf_s_str(s, arg_list, segs, args);
 	/*else if (D(spec) || I(spec))*/
-		/*[>ft_printf_str(s, arg_list, segs, args);<]*/
+		/*ft_printf_str(s, arg_list, segs, args);*/
 	/*else if (B(spec) || U(spec) || X(spec) || P(spec))*/
-		/*[>ft_printf_str(s, arg_list, segs, args);<]*/
+		/*ft_printf_str(s, arg_list, segs, args);*/
 	/*else if (E(spec) || F(spec) || G(spec) || A(spec))*/
-		/*[>ft_printf_str(s, arg_list, segs, args);<]*/
+		/*ft_printf_str(s, arg_list, segs, args);*/
 	/*else if (N(spec))*/
-		/*[>ft_printf_str(s, arg_list, segs, args);<]*/
+		/*ft_printf_str(s, arg_list, segs, args);*/
 	if (ret < 0)
 		return (-1);
 	return (0);

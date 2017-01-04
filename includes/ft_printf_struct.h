@@ -6,7 +6,7 @@
 /*   By: achan <achan@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/01 23:22:13 by achan             #+#    #+#             */
-/*   Updated: 2017/01/02 16:52:29 by achan            ###   ########.fr       */
+/*   Updated: 2017/01/03 20:08:28 by achan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,19 @@
 # define FT_PRINTF_STRUCT_H
 
 # include "ft_general.h"
+
+/*
+**	SPECIDIER TYPE
+*/
+# define SPEC_NORMAL	0
+# define SPEC_ARGVAL	1
+
+/*
+**	WIDTH TYPE / PRECISION TYPE
+*/
+# define WP_NORMAL		0
+# define WP_ARGVAL		1
+# define WP_NARGVAL		2
 
 typedef struct		s_fmt
 {

@@ -6,11 +6,12 @@
 /*   By: achan <achan@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/01 12:58:44 by achan             #+#    #+#             */
-/*   Updated: 2017/01/02 22:03:35 by achan            ###   ########.fr       */
+/*   Updated: 2017/01/03 22:17:35 by achan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_helper.h"
+#include "ft_printf_struct.h"
 
 int		is_specifier(char c)
 {
@@ -25,11 +26,29 @@ int		spec_type_check(char **s, t_fmt *format, t_seg *seg)
 	val = 0;
 	while (NUM(**s))
 		val = (val * 10) + (*(*s)++ - '0');
-	if (val < 0)
-		return (0);
-
+	if (val > 0)
+	{
+		if (**s == '$')
+			format->f_spec_type = SPEC_ARGVAL;
+		else
+		{
+			format->f_w_type = WP_NORMAL;
+			format->f_width = val;
+		}
+	}
+	if (val == 0)
+	{
+		if (**s == '$')
+		{
+			free(format);
+			free(seg);
+			return (1);
+		}
+	}
+	return (0);
 }
-void	flag_check(char **str, t_fmt *fmt)
+
+int		flag_check(char **str, t_fmt *fmt)
 {
 	while (**str && (FLAG(**str) || **str == '0'))
 	{
@@ -45,6 +64,7 @@ void	flag_check(char **str, t_fmt *fmt)
 			fmt->zero = 1;
 		++(*str);
 	}
+	return (0);
 }
 
 int		width_check(char **str, t_fmt *fmt)
