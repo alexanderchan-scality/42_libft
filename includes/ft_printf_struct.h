@@ -6,7 +6,7 @@
 /*   By: achan <achan@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/01 23:22:13 by achan             #+#    #+#             */
-/*   Updated: 2017/01/03 20:08:28 by achan            ###   ########.fr       */
+/*   Updated: 2017/01/04 00:27:02 by achan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@
 
 /*
 **	SPECIDIER TYPE
+**	0:	NORMAL
+**	1+:	Nth positioned argument
 */
 # define SPEC_NORMAL	0
-# define SPEC_ARGVAL	1
 
 /*
 **	WIDTH TYPE / PRECISION TYPE
