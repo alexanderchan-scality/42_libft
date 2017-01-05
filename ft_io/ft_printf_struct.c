@@ -6,7 +6,7 @@
 /*   By: achan <achan@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/01 23:29:08 by achan             #+#    #+#             */
-/*   Updated: 2017/01/02 16:52:40 by achan            ###   ########.fr       */
+/*   Updated: 2017/01/04 20:25:21 by achan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ t_fmt	*new_fmt(void)
 	if (!(new = (t_fmt *)malloc(sizeof(t_fmt))))
 		return (NULL);
 	ft_bzero(new, sizeof(t_fmt));
+	new->f_spec_type = SPEC_UNSET;
+	new->f_w_type = WP_UNSET;
+	new->f_p_type = WP_UNSET;
 	return (new);
 }
 

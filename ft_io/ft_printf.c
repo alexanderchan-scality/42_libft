@@ -6,7 +6,7 @@
 /*   By: achan <achan@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/01 12:26:49 by achan             #+#    #+#             */
-/*   Updated: 2017/01/04 00:46:26 by achan            ###   ########.fr       */
+/*   Updated: 2017/01/04 20:39:47 by achan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,7 @@ static int	ft_printf_fmt_err_chk(char *s)
 	return (pos);
 }
 
-static int	ft_printf_format(char **s, va_list arg_list,
-								t_vector *segs, t_vector *args)
+static int	ft_printf_format(char **s, va_list arg_list, t_info *info)
 {
 	int		p;
 	int		ret;
@@ -69,7 +68,7 @@ static int	ft_printf_format(char **s, va_list arg_list,
 	*s = (**s == '%') ? ++(*s) : *s;
 	spec = (*s)[p];
 	if (C(spec) || S(spec))
-		ret = ft_printf_s_str(s, arg_list, segs, args);
+		ret = ft_printf_s_str(s, arg_list, info);
 	/*else if (D(spec) || I(spec))*/
 		/*ft_printf_str(s, arg_list, segs, args);*/
 	/*else if (B(spec) || U(spec) || X(spec) || P(spec))*/
@@ -83,14 +82,13 @@ static int	ft_printf_format(char **s, va_list arg_list,
 	return (0);
 }
 
-static int	ft_printf_err_chk(char *s, va_list arg_list,
-								t_vector *segs, t_vector *args)
+static int	ft_printf_err_chk(char *s, va_list arg_list, t_info *info)
 {
 	int		i;
 
-	while ((i = ft_printf_parse(&s, segs)))
+	while ((i = ft_printf_parse(&s, info->segs)))
 	{
-		if ((i = ft_printf_format(&s, arg_list, segs, args)) < 0)
+		if ((i = ft_printf_format(&s, arg_list, info)) < 0)
 			return (-1);
 	}
 	if (*s && !i)
@@ -100,23 +98,23 @@ static int	ft_printf_err_chk(char *s, va_list arg_list,
 
 int			ft_printf(const char *format, ...)
 {
-	va_list		arg_list;
+	va_list			arg_list;
+	static t_info	str_info = {0, NULL, NULL};
 	/*int			ret;*/
-	t_vector	*segs;
-	t_vector	*args;
 
-	if (!format || !(segs = ft_vct_blank(sizeof(t_seg))) ||
-		!(args = ft_vct_blank(sizeof(void *))))
+	str_info.arg_flag = 0;
+	if (!format || !(str_info.segs = ft_vct_blank(sizeof(t_seg))) ||
+		!(str_info.args = ft_vct_blank(sizeof(void *))))
 		return (-1);
 	va_start(arg_list, format);
-	if (ft_printf_err_chk((char *)format, arg_list, segs, args))
+	if (ft_printf_err_chk((char *)format, arg_list, &str_info))
 	{
-		ft_vct_del(&segs, &seg_del);
-		ft_vct_del(&args, NULL);
+		ft_vct_del(&(str_info.segs), &seg_del);
+		ft_vct_del(&(str_info.args), NULL);
 		return (-1);
 	}
 	va_end(arg_list);
-	ft_vct_del(&segs, &seg_del);
-	ft_vct_del(&args, NULL);
+	ft_vct_del(&(str_info.segs), &seg_del);
+	ft_vct_del(&(str_info.args), NULL);
 	return (0);
 }

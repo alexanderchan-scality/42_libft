@@ -6,7 +6,7 @@
 /*   By: achan <achan@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/01 12:58:44 by achan             #+#    #+#             */
-/*   Updated: 2017/01/04 00:28:45 by achan            ###   ########.fr       */
+/*   Updated: 2017/01/04 21:11:28 by achan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,38 +19,38 @@ int		is_specifier(char c)
 			B(c) || S(c) || C(c) || P(c) || N(c))
 }
 
-int		spec_type_check(char **s, t_fmt *format, t_seg *seg)
+int		spec_type_check(char **str, t_fmt *fmt, t_info *info)
 {
 	int		val;
 
 	val = 0;
-	while (NUM(**s))
-		val = (val * 10) + (*(*s)++ - '0');
+	while (NUM(**str))
+		val = (val * 10) + (*(*str)++ - '0');
 	if (val > 0)
 	{
-		if (**s == '$')
-			format->f_spec_type = SPEC_ARGVAL;
+		if (**str == '$')
+		{
+			if (!info->arg_flag && !ft_vct_empty(info->args))
+				return (1);
+			info->arg_flag = 1;
+			fmt->f_spec_type = val;
+			++(*str);
+		}
 		else
 		{
-			format->f_w_type = WP_NORMAL;
-			format->f_width = val;
+			fmt->f_w_type = WP_NORMAL;
+			fmt->f_width = val;
 		}
 	}
-	if (val == 0)
-	{
-		if (**s == '$')
-		{
-			free(format);
-			free(seg);
+	else
+		if (**str == '$')
 			return (1);
-		}
-	}
 	return (0);
 }
 
 int		flag_check(char **str, t_fmt *fmt)
 {
-	while (**str && (FLAG(**str) || **str == '0'))
+	while (**str && FLAG(**str))
 	{
 		if (**str == '-')
 			fmt->f_justify = 1;
@@ -59,48 +59,70 @@ int		flag_check(char **str, t_fmt *fmt)
 		else if (**str == ' ')
 			fmt->f_space = 1;
 		else if (**str == '#')
-			fmt->alt = 1;
+			fmt->f_alt = 1;
 		else if (**str == '0')
-			fmt->zero = 1;
+			fmt->f_zero = 1;
+		else if (**str == '\'')
+			fmt->f_apost = 1;
 		++(*str);
 	}
 	return (0);
 }
 
-int		width_check(char **str, t_fmt *fmt)
+int		width_check(char **str, t_fmt *fmt, t_info *info)
 {
 	int	width;
 
+	if (**str == '*' && ++(*str))
+		fmt->f_w_type = WP_ARGVAL;
 	width = 0;
-	while (NUM(**s))
-		width = (width * 10) + (*(*s)++ - '0');
-	if (**str == '*')
+	while (NUM(**str))
+		width = (width * 10) + (*(*str)++ - '0');
+	fmt->f_width = width;
+	if (width > 0)
 	{
-		if (width > 0)
-			return (1);
-		fmt->f_min = -1;
+		if (**str == '$')
+		{
+			if (!info->arg_flag && !ft_vct_empty(info->args))
+				return (1);
+			fmt->f_w_type = WP_NARGVAL;
+		}
+		else
+		{
+			if (fmt->f_w_type == WP_ARGVAL)
+				return (1);
+			else
+				fmt->f_w_type = WP_NORMAL;
+		}
 	}
 	return (0);
 }
 
-int		precision_check(char **str, t_fmt *fmt)
+int		precision_check(char **str, t_fmt *fmt, t_info *info)
 {
-	int	width;
+	int	precision;
 
-	if (**str != '.')
+	if (**str == '*' && ++(*str))
+		fmt->f_p_type = WP_ARGVAL;
+	precision = 0;
+	while (NUM(**str))
+		precision = (precision * 10) + (*(*str)++ - '0');
+	fmt->f_precision = precision;
+	if (precision > 0)
 	{
-		fmt->f_no_precision = 1;
-		return (0);
-	}
-	++(*str);
-	width = ft_atoi(*str);
-	while (**str >= '0' && **str <= '9')
-		++(*str);
-	if (**str == '*')
-	{
-		if (width > 0)
-			return (1);
-		fmt->f_max = -1;
+		if (**str == '$')
+		{
+			if (!info->arg_flag && !ft_vct_empty(info->args))
+				return (1);
+			fmt->f_p_type = WP_NARGVAL;
+		}
+		else
+		{
+			if (fmt->f_p_type == WP_ARGVAL)
+				return (1);
+			else
+				fmt->f_p_type = WP_NORMAL;
+		}
 	}
 	return (0);
 }
@@ -115,5 +137,7 @@ int		length_modifier(char **str)
 		return (5);
 	else if (**str == 'z' && ++(*str))
 		return (6);
+	/*else if (**str == 'L' && ++(*str))*/
+		/*return (7);*/
 	return (0);
 }
