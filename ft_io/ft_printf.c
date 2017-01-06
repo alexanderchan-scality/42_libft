@@ -6,7 +6,7 @@
 /*   By: achan <achan@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/01 12:26:49 by achan             #+#    #+#             */
-/*   Updated: 2017/01/04 20:39:47 by achan            ###   ########.fr       */
+/*   Updated: 2017/01/05 15:23:16 by achan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,8 @@ int			ft_printf(const char *format, ...)
 	/*int			ret;*/
 
 	str_info.arg_flag = 0;
+	if (ft_printf_spec_check((char *)format))
+		return (-1);
 	if (!format || !(str_info.segs = ft_vct_blank(sizeof(t_seg))) ||
 		!(str_info.args = ft_vct_blank(sizeof(void *))))
 		return (-1);

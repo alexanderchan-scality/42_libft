@@ -6,7 +6,7 @@
 /*   By: achan <achan@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/01 12:58:44 by achan             #+#    #+#             */
-/*   Updated: 2017/01/04 21:11:28 by achan            ###   ########.fr       */
+/*   Updated: 2017/01/05 15:06:45 by achan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,7 @@ int		width_check(char **str, t_fmt *fmt, t_info *info)
 		{
 			if (fmt->f_w_type == WP_ARGVAL)
 				return (1);
-			else
-				fmt->f_w_type = WP_NORMAL;
+			fmt->f_w_type = WP_NORMAL;
 		}
 	}
 	return (0);
@@ -120,8 +119,7 @@ int		precision_check(char **str, t_fmt *fmt, t_info *info)
 		{
 			if (fmt->f_p_type == WP_ARGVAL)
 				return (1);
-			else
-				fmt->f_p_type = WP_NORMAL;
+			fmt->f_p_type = WP_NORMAL;
 		}
 	}
 	return (0);
