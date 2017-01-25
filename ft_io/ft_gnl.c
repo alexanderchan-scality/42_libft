@@ -6,11 +6,12 @@
 /*   By: achan <achan@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/26 23:01:15 by achan             #+#    #+#             */
-/*   Updated: 2016/12/29 21:11:47 by achan            ###   ########.fr       */
+/*   Updated: 2017/01/25 11:47:25 by achan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_io.h"
+#include "ft_gnl.h"
 
 static t_fd_state	*fd_new(int fd)
 {
