@@ -13,6 +13,8 @@
 #ifndef FT_GNL_H
 # define FT_GNL_H
 
+# include <ft_linkedlist.h>
+
 # define GNL_BUFF_SIZE	4096
 
 typedef struct		s_fd_state

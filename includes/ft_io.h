@@ -6,7 +6,7 @@
 /*   By: achan <achan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 05:44:20 by achan             #+#    #+#             */
-/*   Updated: 2017/01/25 11:46:07 by achan            ###   ########.fr       */
+/*   Updated: 2017/01/25 12:16:55 by achan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define FT_IO_H
 
 # include <unistd.h>
-# include <stdarg.h>
 # include "ft_general.h"
 
 int					ft_utf_encode(int c, int *output);

@@ -23,7 +23,7 @@ static t_fd_state	*fd_new(int fd)
 		return (NULL);
 	ret->fd = fd;
 	ret->rem_size = 0;
-	ft_bzero(ret->rem, BUFF_SIZE);
+	ft_bzero(ret->rem, GNL_BUFF_SIZE);
 	return (ret);
 }
 
@@ -65,7 +65,7 @@ static int			get_rem_line(char **line, t_fd_state *state,
 			*line = ft_memndup(state->rem, *cur_size + 1);
 			(*line)[*cur_size] = 0;
 			state->rem_size = 0;
-			ft_bzero(state->rem, BUFF_SIZE);
+			ft_bzero(state->rem, GNL_BUFF_SIZE);
 		}
 	}
 	return (0);
@@ -77,9 +77,9 @@ static int			get_read_line(char **line,
 	int		ret;
 	char	*nl_pos;
 	size_t	d_size;
-	char	buf[BUFF_SIZE];
+	char	buf[GNL_BUFF_SIZE];
 
-	while ((ret = read(state->fd, buf, BUFF_SIZE)) > 0)
+	while ((ret = read(state->fd, buf, GNL_BUFF_SIZE)) > 0)
 	{
 		if ((nl_pos = ft_memchr(buf, '\n', ret)))
 		{
@@ -94,7 +94,7 @@ static int			get_read_line(char **line,
 		ft_memmove(*line + *cur_size, buf, d_size);
 		*cur_size += d_size;
 		(*line)[*cur_size] = 0;
-		if (nl_pos || ret < BUFF_SIZE)
+		if (nl_pos || ret < GNL_BUFF_SIZE)
 			return (1);
 	}
 	return (ret);
