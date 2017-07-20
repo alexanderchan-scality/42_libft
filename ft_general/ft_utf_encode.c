@@ -6,7 +6,7 @@
 /*   By: achan <achan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 03:54:58 by achan             #+#    #+#             */
-/*   Updated: 2016/12/22 04:34:08 by achan            ###   ########.fr       */
+/*   Updated: 2017/07/20 11:08:23 by arekisann        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		ft_utf_encode(int c, int *output)
 {
 	static unsigned char	a[5] = { 0x00, 0xFF, 0x1F, 0x0F, 0x07 };
 	static unsigned char	o[5] = { 0x00, 0x00, 0xC0, 0xE0, 0xF0 };
-	unsigned char			ret;
+	unsigned int			ret;
 	unsigned int			i;
 
 	ret = (c > 0x7F) ? 2 : 1;
