@@ -5,4 +5,7 @@
 Usage:<br />
 1)  To use the library, clone/download the folder onto the root directory of the project.<br />
 2)  Compile and create the "libft.a" library using the Makefile with the command: "make all"<br />
-3)  B
+
+Other make file functions includes:  
+- "make fclean" to remove the generate library and object files . 
+- "make re" to remove and remake the library
